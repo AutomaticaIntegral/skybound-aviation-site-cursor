@@ -1,57 +1,61 @@
 
 import React, { useEffect, useRef } from 'react';
-import mapboxgl, { LngLatLike } from 'mapbox-gl';
-import 'mapbox-gl/dist/mapbox-gl.css';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 
 // Coordenadas del Aeropuerto de Barcelona El Prat
-const BARCELONA_AIRPORT_COORDINATES: LngLatLike = [2.0785, 41.2974];
+const BARCELONA_AIRPORT_COORDINATES: [number, number] = [41.2974, 2.0785];
+
+// Fix for default marker icons in Leaflet
+const fixLeafletIcon = () => {
+  delete (L.Icon.Default.prototype as any)._getIconUrl;
+  
+  L.Icon.Default.mergeOptions({
+    iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
+    iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+    shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+  });
+};
 
 const BarcelonaMap = () => {
   const mapContainer = useRef<HTMLDivElement>(null);
-  const map = useRef<mapboxgl.Map | null>(null);
+  const mapInstance = useRef<L.Map | null>(null);
 
   useEffect(() => {
     if (!mapContainer.current) return;
     
     try {
-      // Usando Mapbox con estilo libre OSM
-      mapboxgl.accessToken = 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA';
+      // Fix Leaflet icon issue
+      fixLeafletIcon();
       
-      map.current = new mapboxgl.Map({
-        container: mapContainer.current,
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: BARCELONA_AIRPORT_COORDINATES,
-        zoom: 13,
-      });
-      
-      // Añadir controles de navegación
-      map.current.addControl(
-        new mapboxgl.NavigationControl(),
-        'top-right'
-      );
-      
-      // Añadir un marcador en el Aeropuerto de Barcelona
-      new mapboxgl.Marker({ color: '#1EAEDB' })
-        .setLngLat(BARCELONA_AIRPORT_COORDINATES)
-        .setPopup(
-          new mapboxgl.Popup().setHTML(
-            "<h3>Aeropuerto de Barcelona-El Prat</h3><p>08820 El Prat de Llobregat, Barcelona</p>"
-          )
-        )
-        .addTo(map.current);
+      // Initialize map if it doesn't exist
+      if (!mapInstance.current) {
+        mapInstance.current = L.map(mapContainer.current).setView(BARCELONA_AIRPORT_COORDINATES, 13);
+        
+        // Add OpenStreetMap tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(mapInstance.current);
+        
+        // Add marker for Barcelona Airport
+        const marker = L.marker(BARCELONA_AIRPORT_COORDINATES).addTo(mapInstance.current);
+        marker.bindPopup("<h3>Aeropuerto de Barcelona-El Prat</h3><p>08820 El Prat de Llobregat, Barcelona</p>").openPopup();
+      }
     } catch (error) {
       console.error('Error initializing map:', error);
     }
     
+    // Cleanup function
     return () => {
-      if (map.current) {
-        map.current.remove();
+      if (mapInstance.current) {
+        mapInstance.current.remove();
+        mapInstance.current = null;
       }
     };
   }, []);
 
   return (
-    <div className="rounded-lg overflow-hidden h-[200px] shadow-lg">
+    <div className="rounded-lg overflow-hidden h-[400px] shadow-lg">
       <div ref={mapContainer} className="w-full h-full" />
     </div>
   );
