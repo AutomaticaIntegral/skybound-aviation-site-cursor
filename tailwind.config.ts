@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -21,6 +20,7 @@ export default {
 		extend: {
 			fontFamily: {
 				inter: ['Inter', 'sans-serif'],
+				montserrat: ['Montserrat', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -56,7 +56,6 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				// Custom colors for Olmo Aviation
 				skyblue: {
 					light: '#33C3F0',
 					DEFAULT: '#1EAEDB',
@@ -102,6 +101,16 @@ export default {
 					'0%': { transform: 'scale(0.95)', opacity: '0' },
 					'100%': { transform: 'scale(1)', opacity: '1' }
 				},
+				'subtle-float': {
+					'0%': { transform: 'translateY(0px) scale(1.02)' },
+					'50%': { transform: 'translateY(-10px) scale(1.03)' },
+					'100%': { transform: 'translateY(0px) scale(1.02)' }
+				},
+				'glow-pulse': {
+					'0%': { boxShadow: '0 0 5px 0 rgba(51, 195, 240, 0.5)' },
+					'50%': { boxShadow: '0 0 20px 5px rgba(51, 195, 240, 0.7)' },
+					'100%': { boxShadow: '0 0 5px 0 rgba(51, 195, 240, 0.5)' }
+				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
@@ -111,9 +120,17 @@ export default {
 				'slide-in-right': 'slide-in-right 0.5s ease-out',
 				'slide-in-bottom': 'slide-in-bottom 0.5s ease-out',
 				'scale-up': 'scale-up 0.5s ease-out',
+				'subtle-float': 'subtle-float 20s ease-in-out infinite',
+				'glow-pulse': 'glow-pulse 3s ease-in-out infinite',
 			},
 			boxShadow: {
 				'service': '0 10px 25px -5px rgba(30, 174, 219, 0.1), 0 8px 10px -6px rgba(30, 174, 219, 0.1)',
+				'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.12)',
+				'neon': '0 0 5px rgba(51, 195, 240, 0.5), 0 0 20px rgba(51, 195, 240, 0.3)',
+				'card-hover': '0 10px 40px -10px rgba(30, 174, 219, 0.3)',
+			},
+			backdropBlur: {
+				xs: '2px',
 			}
 		}
 	},
