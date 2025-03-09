@@ -25,7 +25,7 @@ const HeroSection = () => {
       
       {/* Improved Hero Content with Enhanced Glassmorphism */}
       <div className="container mx-auto px-4 relative z-20 flex items-center justify-start h-full">
-        <div className="max-w-3xl backdrop-blur-xl p-8 rounded-xl bg-gradient-to-r from-charcoal-dark/40 to-transparent border border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)] animate-fade-in">
+        <div className="max-w-3xl backdrop-blur-xl p-8 rounded-xl bg-gradient-to-r from-charcoal-dark/70 to-charcoal-dark/50 border border-white/20 shadow-[0_4px_30px_rgba(0,0,0,0.3)] animate-fade-in">
           <h1 className="text-white mb-6 text-5xl md:text-6xl font-bold tracking-wider leading-tight">
             Pioneering the <span className="text-transparent bg-clip-text bg-gradient-to-r from-skyblue to-skyblue-light animate-pulse-gradient">Future</span> of Aviation
           </h1>
