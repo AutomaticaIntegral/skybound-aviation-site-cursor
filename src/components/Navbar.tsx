@@ -3,9 +3,12 @@ import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import LanguageSwitcher from './LanguageSwitcher';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { t } = useLanguage();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -23,23 +26,24 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-10">
             <a href="#home" className="text-charcoal hover:text-skyblue font-medium transition-colors">
-              Home
+              {t('navbar.home')}
             </a>
             <a href="#about" className="text-charcoal hover:text-skyblue font-medium transition-colors">
-              About Us
+              {t('navbar.about')}
             </a>
             <a href="#services" className="text-charcoal hover:text-skyblue font-medium transition-colors">
-              Services
+              {t('navbar.services')}
             </a>
             <a href="#contact" className="text-charcoal hover:text-skyblue font-medium transition-colors">
-              Contact
+              {t('navbar.contact')}
             </a>
           </nav>
 
-          {/* Contact Button - Desktop */}
-          <div className="hidden md:block">
+          {/* Language Switcher + Contact Button - Desktop */}
+          <div className="hidden md:flex items-center space-x-4">
+            <LanguageSwitcher />
             <Button variant="default" className="bg-skyblue hover:bg-skyblue-dark">
-              Request Information
+              {t('navbar.requestInfo')}
             </Button>
           </div>
 
@@ -66,35 +70,38 @@ const Navbar = () => {
                 className="text-charcoal hover:text-skyblue font-medium py-2 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Home
+                {t('navbar.home')}
               </a>
               <a 
                 href="#about" 
                 className="text-charcoal hover:text-skyblue font-medium py-2 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                About Us
+                {t('navbar.about')}
               </a>
               <a 
                 href="#services" 
                 className="text-charcoal hover:text-skyblue font-medium py-2 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Services
+                {t('navbar.services')}
               </a>
               <a 
                 href="#contact" 
                 className="text-charcoal hover:text-skyblue font-medium py-2 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Contact
+                {t('navbar.contact')}
               </a>
+              <div className="py-2">
+                <LanguageSwitcher />
+              </div>
               <Button 
                 variant="default" 
                 className="bg-skyblue hover:bg-skyblue-dark w-full"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Request Information
+                {t('navbar.requestInfo')}
               </Button>
             </nav>
           </div>

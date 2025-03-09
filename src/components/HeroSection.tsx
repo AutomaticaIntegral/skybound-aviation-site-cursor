@@ -2,8 +2,11 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const HeroSection = () => {
+  const { t } = useLanguage();
+  
   return (
     <section id="home" className="relative h-[85vh] flex items-center overflow-hidden">
       {/* Enhanced Hero Background with Parallax Effect */}
@@ -27,23 +30,31 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 relative z-20 flex items-center justify-start h-full">
         <div className="max-w-3xl backdrop-blur-xl p-8 rounded-xl bg-gradient-to-r from-charcoal-dark/90 to-charcoal-dark/80 border border-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.4)] ring-1 ring-white/10">
           <h1 className="text-white mb-6 text-5xl md:text-6xl font-bold tracking-wider leading-tight">
-            Pioneering the <span className="text-transparent bg-clip-text bg-gradient-to-r from-skyblue to-skyblue-light animate-pulse-gradient">Future</span> of Aviation
+            {t('hero.title').split(' ').map((word, i, arr) => 
+              i === 1 ? (
+                <span key={i} className="text-transparent bg-clip-text bg-gradient-to-r from-skyblue to-skyblue-light animate-pulse-gradient">
+                  {word}{' '}
+                </span>
+              ) : (
+                <span key={i}>{word}{i < arr.length - 1 ? ' ' : ''}</span>
+              )
+            )}
           </h1>
           <p className="text-white/90 text-xl md:text-2xl mb-12 font-light leading-relaxed">
-            Delivering innovative aerospace solutions with precision, reliability, and cutting-edge technology.
+            {t('hero.subtitle')}
           </p>
           <div className="flex flex-col sm:flex-row gap-6">
             <Button 
               className="bg-skyblue hover:bg-skyblue-dark text-white px-8 py-7 text-lg rounded-md shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 group"
             >
-              Explore Our Services
+              {t('hero.exploreButton')}
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button 
               variant="outline" 
               className="border-2 border-skyblue text-skyblue backdrop-blur-sm bg-white/5 hover:bg-white/20 hover:text-white px-8 py-7 text-lg rounded-md shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
             >
-              About Olmo Aviation
+              {t('hero.aboutButton')}
             </Button>
           </div>
         </div>

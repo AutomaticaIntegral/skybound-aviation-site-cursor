@@ -1,8 +1,12 @@
 
 import React from 'react';
 import { Facebook, Twitter, Linkedin, Instagram, Phone, Mail, MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Footer = () => {
+  const { t } = useLanguage();
+  
   return (
     <footer className="bg-charcoal-dark text-white">
       {/* EU Funding Banner */}
@@ -21,8 +25,7 @@ const Footer = () => {
           <div className="col-span-1 md:col-span-5">
             <h3 className="text-2xl font-bold text-skyblue mb-6">Olmo Aviation</h3>
             <p className="mb-6 text-gray-300 max-w-md leading-relaxed">
-              A global leader in aerospace innovation, delivering cutting-edge solutions 
-              for commercial and defense applications with uncompromising quality and precision.
+              {t('footer.description')}
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-skyblue transition-colors transform hover:scale-110 duration-300">
@@ -41,37 +44,43 @@ const Footer = () => {
           </div>
           
           <div className="col-span-1 md:col-span-3">
-            <h4 className="text-lg font-bold mb-6 text-white/90">Quick Links</h4>
+            <h4 className="text-lg font-bold mb-6 text-white/90">{t('footer.quickLinks')}</h4>
             <ul className="space-y-3">
               <li>
                 <a href="#home" className="text-gray-300 hover:text-skyblue transition-colors flex items-center gap-2 group">
                   <span className="h-[1px] w-0 bg-skyblue group-hover:w-4 transition-all duration-300"></span>
-                  Home
+                  {t('navbar.home')}
                 </a>
               </li>
               <li>
                 <a href="#about" className="text-gray-300 hover:text-skyblue transition-colors flex items-center gap-2 group">
                   <span className="h-[1px] w-0 bg-skyblue group-hover:w-4 transition-all duration-300"></span>
-                  About Us
+                  {t('navbar.about')}
                 </a>
               </li>
               <li>
                 <a href="#services" className="text-gray-300 hover:text-skyblue transition-colors flex items-center gap-2 group">
                   <span className="h-[1px] w-0 bg-skyblue group-hover:w-4 transition-all duration-300"></span>
-                  Services
+                  {t('navbar.services')}
                 </a>
               </li>
               <li>
                 <a href="#contact" className="text-gray-300 hover:text-skyblue transition-colors flex items-center gap-2 group">
                   <span className="h-[1px] w-0 bg-skyblue group-hover:w-4 transition-all duration-300"></span>
-                  Contact
+                  {t('navbar.contact')}
                 </a>
+              </li>
+              <li>
+                <Link to="/admin" className="text-gray-300 hover:text-skyblue transition-colors flex items-center gap-2 group">
+                  <span className="h-[1px] w-0 bg-skyblue group-hover:w-4 transition-all duration-300"></span>
+                  Admin
+                </Link>
               </li>
             </ul>
           </div>
           
           <div className="col-span-1 md:col-span-4">
-            <h4 className="text-lg font-bold mb-6 text-white/90">Contact Info</h4>
+            <h4 className="text-lg font-bold mb-6 text-white/90">{t('footer.contactInfo')}</h4>
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-skyblue/10 flex items-center justify-center">
@@ -97,11 +106,11 @@ const Footer = () => {
         
         <div className="mt-8 pt-6 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm">
-            &copy; {new Date().getFullYear()} Olmo Aviation. All rights reserved.
+            &copy; {new Date().getFullYear()} Olmo Aviation. {t('footer.rights')}
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0 text-sm text-gray-400">
-            <a href="#" className="hover:text-skyblue transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-skyblue transition-colors">Terms of Service</a>
+            <a href="#" className="hover:text-skyblue transition-colors">{t('footer.privacy')}</a>
+            <a href="#" className="hover:text-skyblue transition-colors">{t('footer.terms')}</a>
           </div>
         </div>
       </div>
