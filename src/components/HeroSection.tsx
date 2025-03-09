@@ -29,7 +29,7 @@ const HeroSection = () => {
             </Button>
             <Button 
               variant="outline" 
-              className="border-2 border-white text-white backdrop-blur-sm hover:bg-white/10 hover:border-skyblue hover:text-skyblue px-8 py-7 text-lg rounded-md shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+              className="border-2 border-skyblue text-skyblue backdrop-blur-sm bg-white/10 hover:bg-white/20 hover:border-skyblue hover:text-white px-8 py-7 text-lg rounded-md shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
             >
               About Olmo Aviation
             </Button>
