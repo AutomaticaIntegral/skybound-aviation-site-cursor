@@ -13,10 +13,11 @@ import {
 const LanguageSwitcher = () => {
   const { language, setLanguage } = useLanguage();
 
+  // Usando una URL pública más directa para la bandera catalana
   const languageOptions = [
     { code: 'es', label: 'Español', flag: 'https://flagcdn.com/es.svg' },
     { code: 'en', label: 'English', flag: 'https://flagcdn.com/gb.svg' },
-    { code: 'ca', label: 'Català', flag: 'https://flagcdn.com/64x48/catalonia.png' }
+    { code: 'ca', label: 'Català', flag: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNTAgMTAwIj48cmVjdCB3aWR0aD0iMTUwIiBoZWlnaHQ9IjEwIiBmaWxsPSIjRkNERDAzIi8+PHJlY3QgeT0iMTAiIHdpZHRoPSIxNTAiIGhlaWdodD0iMTAiIGZpbGw9IiNERTAwMzQiLz48cmVjdCB5PSIyMCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxMCIgZmlsbD0iI0ZDREQUM0QiLz48cmVjdCB5PSIzMCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxMCIgZmlsbD0iI0RFMDAzNCIvPjxyZWN0IHk9IjQwIiB3aWR0aD0iMTUwIiBoZWlnaHQ9IjEwIiBmaWxsPSIjRkNERDAzIi8+PHJlY3QgeT0iNTAiIHdpZHRoPSIxNTAiIGhlaWdodD0iMTAiIGZpbGw9IiNERTAwMzQiLz48cmVjdCB5PSI2MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxMCIgZmlsbD0iI0ZDREQUM0QiLz48cmVjdCB5PSI3MCIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxMCIgZmlsbD0iI0RFMDAzNCIvPjxyZWN0IHk9IjgwIiB3aWR0aD0iMTUwIiBoZWlnaHQ9IjEwIiBmaWxsPSIjRkNERDAzIi8+PHJlY3QgeT0iOTAiIHdpZHRoPSIxNTAiIGhlaWdodD0iMTAiIGZpbGw9IiNERTAwMzQiLz48L3N2Zz4=' }
   ];
 
   const currentLanguage = languageOptions.find(option => option.code === language);
