@@ -1,33 +1,12 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import { CheckCircle, Users, Globe, Award } from 'lucide-react';
-
-const stats = [
-  {
-    icon: CheckCircle,
-    count: 500,
-    label: "Projects Completed"
-  },
-  {
-    icon: Users,
-    count: 120,
-    label: "Expert Engineers"
-  },
-  {
-    icon: Globe,
-    count: 30,
-    label: "Countries Served"
-  },
-  {
-    icon: Award,
-    count: 25,
-    label: "Industry Awards"
-  }
-];
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const StatsSection = () => {
+  const { t } = useLanguage();
   const [isVisible, setIsVisible] = useState(false);
-  const [counts, setCounts] = useState(stats.map(() => 0));
+  const [counts, setCounts] = useState([0, 0, 0, 0]);
   const sectionRef = useRef(null);
 
   // Animation duration in ms
@@ -54,6 +33,13 @@ const StatsSection = () => {
   useEffect(() => {
     if (!isVisible) return;
     
+    const stats = [
+      { count: 500 }, // Projects
+      { count: 120 }, // Engineers
+      { count: 30 },  // Countries
+      { count: 25 }   // Awards
+    ];
+    
     const intervals = stats.map((stat, index) => {
       const stepTime = Math.floor(ANIMATION_DURATION / stat.count);
       
@@ -72,6 +58,29 @@ const StatsSection = () => {
       intervals.forEach(interval => clearInterval(interval));
     };
   }, [isVisible]);
+
+  const stats = [
+    {
+      icon: CheckCircle,
+      count: 500,
+      label: t('stats.projectsCompleted')
+    },
+    {
+      icon: Users,
+      count: 120,
+      label: t('stats.expertEngineers')
+    },
+    {
+      icon: Globe,
+      count: 30,
+      label: t('stats.countriesServed')
+    },
+    {
+      icon: Award,
+      count: 25,
+      label: t('stats.industryAwards')
+    }
+  ];
 
   return (
     <section ref={sectionRef} className="bg-gradient-to-r from-skyblue to-skyblue-dark text-white py-20">

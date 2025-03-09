@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
@@ -10,9 +9,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { useToast } from '@/components/ui/use-toast';
 import { Save, Key } from 'lucide-react';
 
-// Simple admin authentication
 const ADMIN_USER = "admin";
-const ADMIN_PASS = "password123"; // In a real app, this would be securely stored
+const ADMIN_PASS = "password123";
 
 const Admin = () => {
   const { language, setLanguage, translations, updateTranslations, t } = useLanguage();
@@ -24,13 +22,11 @@ const Admin = () => {
   const { toast } = useToast();
 
   useEffect(() => {
-    // Check if user is already authenticated
     const auth = localStorage.getItem('admin_auth');
     if (auth === 'true') {
       setIsAuthenticated(true);
     }
     
-    // Initialize editable translations with current translations
     setEditableTranslations(translations);
   }, [translations]);
 
@@ -220,10 +216,11 @@ const Admin = () => {
           </CardHeader>
           <CardContent>
             <Tabs defaultValue="hero" onValueChange={setActiveSection} className="mt-4">
-              <TabsList className="grid grid-cols-5 mb-8">
+              <TabsList className="grid grid-cols-6 mb-8">
                 <TabsTrigger value="hero">Hero</TabsTrigger>
                 <TabsTrigger value="about">About</TabsTrigger>
                 <TabsTrigger value="services">Services</TabsTrigger>
+                <TabsTrigger value="stats">Stats</TabsTrigger>
                 <TabsTrigger value="contact">Contact</TabsTrigger>
                 <TabsTrigger value="footer">Footer</TabsTrigger>
               </TabsList>
@@ -238,6 +235,10 @@ const Admin = () => {
               
               <TabsContent value="services" className="space-y-4">
                 {renderEditableFields('services', 'services')}
+              </TabsContent>
+              
+              <TabsContent value="stats" className="space-y-4">
+                {renderEditableFields('stats', 'stats')}
               </TabsContent>
               
               <TabsContent value="contact" className="space-y-4">

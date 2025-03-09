@@ -9,48 +9,50 @@ import {
   BookOpen 
 } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-
-const services = [
-  {
-    icon: PlaneTakeoff,
-    title: "Aircraft Design",
-    description: "Innovative design solutions for commercial, military, and private aircraft that optimize performance and efficiency."
-  },
-  {
-    icon: Wrench,
-    title: "Maintenance & Repair",
-    description: "Comprehensive maintenance services with state-of-the-art facilities and certified technicians."
-  },
-  {
-    icon: BarChart,
-    title: "Performance Analysis",
-    description: "Advanced data analytics and performance monitoring to optimize aircraft operations and reduce costs."
-  },
-  {
-    icon: Shield,
-    title: "Safety Systems",
-    description: "Cutting-edge safety systems and protocols that exceed industry standards and regulations."
-  },
-  {
-    icon: Cpu,
-    title: "Avionics Solutions",
-    description: "Next-generation avionics technology for enhanced navigation, communication, and flight management."
-  },
-  {
-    icon: BookOpen,
-    title: "Training Programs",
-    description: "Specialized training for pilots, engineers, and maintenance personnel using advanced simulators."
-  }
-];
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const ServicesSection = () => {
+  const { t } = useLanguage();
+  
+  const services = [
+    {
+      icon: PlaneTakeoff,
+      title: t('services.items.aircraftDesign.title'),
+      description: t('services.items.aircraftDesign.description')
+    },
+    {
+      icon: Wrench,
+      title: t('services.items.maintenance.title'),
+      description: t('services.items.maintenance.description')
+    },
+    {
+      icon: BarChart,
+      title: t('services.items.performance.title'),
+      description: t('services.items.performance.description')
+    },
+    {
+      icon: Shield,
+      title: t('services.items.safety.title'),
+      description: t('services.items.safety.description')
+    },
+    {
+      icon: Cpu,
+      title: t('services.items.avionics.title'),
+      description: t('services.items.avionics.description')
+    },
+    {
+      icon: BookOpen,
+      title: t('services.items.training.title'),
+      description: t('services.items.training.description')
+    }
+  ];
+
   return (
     <section id="services" className="bg-gradient-to-b from-gray-50 to-white py-24">
       <div className="container mx-auto px-4">
-        <h2 className="section-title text-charcoal tracking-wide">Our Services</h2>
+        <h2 className="section-title text-charcoal tracking-wide">{t('services.title')}</h2>
         <p className="section-subtitle leading-relaxed">
-          We deliver comprehensive aerospace solutions that combine innovation,
-          precision engineering, and uncompromising quality.
+          {t('services.subtitle')}
         </p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 mt-16">
