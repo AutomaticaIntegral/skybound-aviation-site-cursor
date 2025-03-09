@@ -45,7 +45,7 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section id="services" className="bg-gray-50 py-20">
+    <section id="services" className="bg-gradient-to-b from-gray-50 to-white py-20">
       <div className="container mx-auto px-4">
         <h2 className="section-title">Our Services</h2>
         <p className="section-subtitle">
@@ -53,14 +53,17 @@ const ServicesSection = () => {
           precision engineering, and uncompromising quality.
         </p>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
           {services.map((service, index) => (
-            <Card key={index} className="border-border hover:border-skyblue transition-all duration-300 hover:shadow-md">
+            <Card 
+              key={index} 
+              className="service-card group border border-gray-100 hover:border-skyblue/20 transition-all duration-300 overflow-hidden"
+            >
               <CardHeader className="pb-2">
-                <div className="w-12 h-12 rounded-md bg-skyblue/10 flex items-center justify-center mb-4">
-                  <service.icon className="h-6 w-6 text-skyblue" />
+                <div className="service-icon-container">
+                  <service.icon className="h-6 w-6" />
                 </div>
-                <CardTitle className="text-xl">{service.title}</CardTitle>
+                <CardTitle className="text-xl font-bold">{service.title}</CardTitle>
               </CardHeader>
               <CardContent>
                 <CardDescription className="text-base text-charcoal">{service.description}</CardDescription>

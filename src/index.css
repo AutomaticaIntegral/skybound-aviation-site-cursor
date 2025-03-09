@@ -43,20 +43,20 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-inter;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-bold tracking-tight;
+    @apply font-bold tracking-tight font-inter;
   }
 
   h1 {
-    @apply text-4xl sm:text-5xl md:text-6xl;
+    @apply text-4xl sm:text-5xl md:text-6xl leading-tight;
   }
 
   h2 {
-    @apply text-3xl sm:text-4xl;
+    @apply text-3xl sm:text-4xl md:text-5xl;
   }
 
   h3 {
@@ -74,15 +74,15 @@
 
 @layer components {
   .container-section {
-    @apply container mx-auto px-4 py-12 md:py-24;
+    @apply container mx-auto px-4 py-16 md:py-28;
   }
   
   .section-title {
-    @apply text-3xl md:text-4xl font-bold mb-6 md:mb-8 text-center;
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold mb-6 md:mb-8 text-center;
   }
   
   .section-subtitle {
-    @apply text-xl text-charcoal-light text-center max-w-3xl mx-auto mb-12;
+    @apply text-lg md:text-xl text-charcoal-light text-center max-w-3xl mx-auto mb-16;
   }
   
   .grid-feature {
@@ -94,10 +94,32 @@
   }
   
   .btn-primary {
-    @apply bg-skyblue text-white px-5 py-3 rounded-md font-medium hover:bg-skyblue-dark transition-colors;
+    @apply bg-skyblue hover:bg-skyblue-dark text-white px-6 py-4 rounded-md font-medium transition-all duration-300 hover:shadow-md transform hover:-translate-y-1;
   }
   
   .btn-outline {
-    @apply border border-skyblue text-skyblue px-5 py-3 rounded-md font-medium hover:bg-skyblue hover:text-white transition-colors;
+    @apply border-2 border-skyblue text-skyblue px-6 py-4 rounded-md font-medium hover:bg-skyblue hover:text-white transition-all duration-300 hover:shadow-md transform hover:-translate-y-1;
+  }
+
+  /* Enhanced animations */
+  .animate-fade-in {
+    @apply opacity-0 translate-y-4 animate-[fade-in_0.6s_ease-out_forwards];
+  }
+  
+  .animate-fade-in-delay-1 {
+    @apply opacity-0 translate-y-4 animate-[fade-in_0.6s_ease-out_0.2s_forwards];
+  }
+  
+  .animate-fade-in-delay-2 {
+    @apply opacity-0 translate-y-4 animate-[fade-in_0.6s_ease-out_0.4s_forwards];
+  }
+  
+  /* Service card enhancements */
+  .service-card {
+    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-2 bg-white;
+  }
+  
+  .service-icon-container {
+    @apply w-14 h-14 rounded-md bg-gradient-to-br from-skyblue/90 to-skyblue-light/80 flex items-center justify-center mb-4 text-white shadow-md transition-all duration-300 group-hover:scale-110;
   }
 }
