@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
 
@@ -6,11 +7,13 @@ const Footer = () => {
     <footer className="bg-charcoal-dark text-white">
       {/* EU Funding Banner */}
       <div className="w-full bg-white py-4">
-        <img 
-          src="/lovable-uploads/f6b1cb2b-4801-45ba-a80e-e892b498fa6f.png" 
-          alt="Programa Kit Digital - Cofinanciado por los fondos Next Generation EU" 
-          className="w-full max-w-[1400px] mx-auto px-4"
-        />
+        <div className="flex justify-center">
+          <img 
+            src="/lovable-uploads/f6b1cb2b-4801-45ba-a80e-e892b498fa6f.png" 
+            alt="Programa Kit Digital - Cofinanciado por los fondos Next Generation EU" 
+            className="w-auto max-w-[800px] px-4"
+          />
+        </div>
       </div>
       
       <div className="container mx-auto px-4 py-12">
