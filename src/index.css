@@ -142,4 +142,53 @@
   .service-icon-container {
     @apply w-14 h-14 rounded-md bg-gradient-to-br from-skyblue/90 to-skyblue-light/80 flex items-center justify-center mb-4 text-white shadow-md transition-all duration-300;
   }
+
+  /* Admin Dashboard Specific Styles */
+  .admin-layout {
+    @apply min-h-screen flex;
+  }
+  
+  .admin-sidebar {
+    @apply w-64 bg-charcoal-dark text-white flex flex-col h-screen sticky top-0;
+  }
+  
+  .admin-sidebar-header {
+    @apply p-4 border-b border-gray-700 flex items-center gap-3;
+  }
+  
+  .admin-content {
+    @apply flex-1 overflow-x-hidden bg-gray-50;
+  }
+  
+  .admin-topbar {
+    @apply bg-white w-full px-6 py-3 flex justify-between items-center border-b shadow-sm sticky top-0 z-10;
+  }
+  
+  .admin-nav-item {
+    @apply flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-charcoal hover:text-white transition-colors;
+  }
+  
+  .admin-nav-item.active {
+    @apply bg-charcoal text-white border-l-4 border-skyblue;
+  }
+  
+  .admin-card {
+    @apply p-4 bg-white rounded-lg border shadow-sm hover:shadow-md transition-shadow;
+  }
+  
+  .admin-dashboard-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4;
+  }
+  
+  .admin-stat-card {
+    @apply p-6 bg-white rounded-lg border shadow-sm flex flex-col;
+  }
+  
+  .admin-stat-value {
+    @apply text-3xl font-bold text-charcoal-dark;
+  }
+  
+  .admin-stat-label {
+    @apply text-sm text-muted-foreground;
+  }
 }

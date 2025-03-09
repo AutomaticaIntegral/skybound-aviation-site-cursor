@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
@@ -5,9 +6,11 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/components/ui/use-toast';
-import { Save, Key } from 'lucide-react';
+import { Save, Key, FileText, Home, Layout } from 'lucide-react';
+import AdminSidebar from '@/components/AdminSidebar';
+import AdminTopbar from '@/components/AdminTopbar';
+import AdminStats from '@/components/AdminStats';
 
 const ADMIN_USER = "admin";
 const ADMIN_PASS = "password123";
@@ -19,6 +22,7 @@ const Admin = () => {
   const [password, setPassword] = useState('');
   const [editableTranslations, setEditableTranslations] = useState({});
   const [activeSection, setActiveSection] = useState('hero');
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -74,9 +78,6 @@ const Admin = () => {
       title: t('admin.success'),
       duration: 3000,
     });
-    
-    // In a real app, we would save to a backend here
-    // For the purpose of this demo, we're just updating the in-memory translations
   };
 
   const renderEditableFields = (section: string, prefix: string) => {
@@ -184,80 +185,89 @@ const Admin = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="bg-charcoal-dark text-white shadow">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-xl font-semibold">{t('admin.title')}</h1>
-          <div className="flex items-center gap-4">
-            <Select value={language} onValueChange={handleLanguageChange}>
-              <SelectTrigger className="w-[180px] bg-charcoal-dark text-white">
-                <SelectValue placeholder={t('admin.language')} />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="es">🇪🇸 Español</SelectItem>
-                <SelectItem value="en">🇬🇧 English</SelectItem>
-                <SelectItem value="ca">🏴 Català</SelectItem>
-              </SelectContent>
-            </Select>
-            <Button variant="outline" onClick={handleLogout} className="text-white border-white hover:bg-gray-700">
-              Logout
-            </Button>
-          </div>
-        </div>
-      </header>
+    <div className="admin-layout">
+      <AdminSidebar 
+        collapsed={sidebarCollapsed} 
+        toggleSidebar={() => setSidebarCollapsed(!sidebarCollapsed)} 
+        onLogout={handleLogout}
+      />
       
-      <main className="container mx-auto px-4 py-8">
-        <Card>
-          <CardHeader>
-            <CardTitle>{t('admin.subtitle')}</CardTitle>
-            <CardDescription>
-              Edit website content for the currently selected language: <strong>{language.toUpperCase()}</strong>
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Tabs defaultValue="hero" onValueChange={setActiveSection} className="mt-4">
-              <TabsList className="grid grid-cols-6 mb-8">
-                <TabsTrigger value="hero">Hero</TabsTrigger>
-                <TabsTrigger value="about">About</TabsTrigger>
-                <TabsTrigger value="services">Services</TabsTrigger>
-                <TabsTrigger value="stats">Stats</TabsTrigger>
-                <TabsTrigger value="contact">Contact</TabsTrigger>
-                <TabsTrigger value="footer">Footer</TabsTrigger>
-              </TabsList>
-              
-              <TabsContent value="hero" className="space-y-4">
-                {renderEditableFields('hero', 'hero')}
-              </TabsContent>
-              
-              <TabsContent value="about" className="space-y-4">
-                {renderEditableFields('about', 'about')}
-              </TabsContent>
-              
-              <TabsContent value="services" className="space-y-4">
-                {renderEditableFields('services', 'services')}
-              </TabsContent>
-              
-              <TabsContent value="stats" className="space-y-4">
-                {renderEditableFields('stats', 'stats')}
-              </TabsContent>
-              
-              <TabsContent value="contact" className="space-y-4">
-                {renderEditableFields('contact', 'contact')}
-              </TabsContent>
-              
-              <TabsContent value="footer" className="space-y-4">
-                {renderEditableFields('footer', 'footer')}
-              </TabsContent>
-            </Tabs>
-            
-            <div className="mt-8 flex justify-end">
-              <Button onClick={saveChanges} className="bg-skyblue hover:bg-skyblue-dark">
-                <Save className="mr-2 h-4 w-4" /> {t('admin.save')}
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      </main>
+      <div className="admin-content">
+        <AdminTopbar 
+          username="Administrator" 
+          language={language} 
+          onLanguageChange={handleLanguageChange} 
+        />
+        
+        <div className="p-6">
+          <div className="mb-6">
+            <h1 className="text-2xl font-bold text-charcoal-dark mb-2">{t('admin.subtitle')}</h1>
+            <p className="text-muted-foreground">
+              {t('admin.contentManagement')} - {language.toUpperCase()}
+            </p>
+          </div>
+          
+          <AdminStats />
+          
+          <Card>
+            <CardHeader className="border-b">
+              <div className="flex justify-between items-center">
+                <div>
+                  <CardTitle className="flex items-center gap-2">
+                    <FileText className="h-5 w-5" /> {t('admin.contentEditor')}
+                  </CardTitle>
+                  <CardDescription>
+                    {t('admin.contentEditorDescription')}
+                  </CardDescription>
+                </div>
+                <Button onClick={saveChanges} className="bg-skyblue hover:bg-skyblue-dark">
+                  <Save className="mr-2 h-4 w-4" /> {t('admin.save')}
+                </Button>
+              </div>
+            </CardHeader>
+            <CardContent className="pt-6">
+              <Tabs defaultValue="hero" onValueChange={setActiveSection} className="mt-4">
+                <TabsList className="grid grid-cols-6 mb-8">
+                  <TabsTrigger value="hero" className="flex items-center gap-2">
+                    <Home className="h-4 w-4" /> Hero
+                  </TabsTrigger>
+                  <TabsTrigger value="about" className="flex items-center gap-2">
+                    <Layout className="h-4 w-4" /> About
+                  </TabsTrigger>
+                  <TabsTrigger value="services">Services</TabsTrigger>
+                  <TabsTrigger value="stats">Stats</TabsTrigger>
+                  <TabsTrigger value="contact">Contact</TabsTrigger>
+                  <TabsTrigger value="footer">Footer</TabsTrigger>
+                </TabsList>
+                
+                <TabsContent value="hero" className="space-y-4">
+                  {renderEditableFields('hero', 'hero')}
+                </TabsContent>
+                
+                <TabsContent value="about" className="space-y-4">
+                  {renderEditableFields('about', 'about')}
+                </TabsContent>
+                
+                <TabsContent value="services" className="space-y-4">
+                  {renderEditableFields('services', 'services')}
+                </TabsContent>
+                
+                <TabsContent value="stats" className="space-y-4">
+                  {renderEditableFields('stats', 'stats')}
+                </TabsContent>
+                
+                <TabsContent value="contact" className="space-y-4">
+                  {renderEditableFields('contact', 'contact')}
+                </TabsContent>
+                
+                <TabsContent value="footer" className="space-y-4">
+                  {renderEditableFields('footer', 'footer')}
+                </TabsContent>
+              </Tabs>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
     </div>
   );
 };
