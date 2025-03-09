@@ -1,10 +1,18 @@
-
 import React from 'react';
 import { Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
 
 const Footer = () => {
   return (
     <footer className="bg-charcoal-dark text-white">
+      {/* EU Funding Banner */}
+      <div className="w-full bg-white py-4">
+        <img 
+          src="/lovable-uploads/f6b1cb2b-4801-45ba-a80e-e892b498fa6f.png" 
+          alt="Programa Kit Digital - Cofinanciado por los fondos Next Generation EU" 
+          className="w-full max-w-[1400px] mx-auto px-4"
+        />
+      </div>
+      
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-2">
