@@ -45,28 +45,28 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section id="services" className="bg-gradient-to-b from-gray-50 to-white py-20">
+    <section id="services" className="bg-gradient-to-b from-gray-50 to-white py-24">
       <div className="container mx-auto px-4">
-        <h2 className="section-title">Our Services</h2>
-        <p className="section-subtitle">
+        <h2 className="section-title text-charcoal tracking-wide">Our Services</h2>
+        <p className="section-subtitle leading-relaxed">
           We deliver comprehensive aerospace solutions that combine innovation,
           precision engineering, and uncompromising quality.
         </p>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 mt-16">
           {services.map((service, index) => (
             <Card 
               key={index} 
-              className="service-card group border border-gray-100 hover:border-skyblue/20 transition-all duration-300 overflow-hidden"
+              className="service-card group border border-gray-100 hover:border-skyblue/20 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-xl overflow-hidden"
             >
-              <CardHeader className="pb-2">
-                <div className="service-icon-container">
-                  <service.icon className="h-6 w-6" />
+              <CardHeader className="pb-2 pt-6">
+                <div className="service-icon-container mb-5 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                  <service.icon className="h-6 w-6 group-hover:stroke-[2.5px] transition-all" />
                 </div>
-                <CardTitle className="text-xl font-bold">{service.title}</CardTitle>
+                <CardTitle className="text-xl font-bold group-hover:text-skyblue transition-colors duration-300">{service.title}</CardTitle>
               </CardHeader>
               <CardContent>
-                <CardDescription className="text-base text-charcoal">{service.description}</CardDescription>
+                <CardDescription className="text-base text-charcoal leading-relaxed">{service.description}</CardDescription>
               </CardContent>
             </Card>
           ))}

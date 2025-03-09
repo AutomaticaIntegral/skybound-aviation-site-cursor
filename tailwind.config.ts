@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -110,24 +111,44 @@ export default {
 					'0%': { boxShadow: '0 0 5px 0 rgba(51, 195, 240, 0.5)' },
 					'50%': { boxShadow: '0 0 20px 5px rgba(51, 195, 240, 0.7)' },
 					'100%': { boxShadow: '0 0 5px 0 rgba(51, 195, 240, 0.5)' }
-				}
+				},
+				'pulse-slow': {
+					'0%': { opacity: '0.4' },
+					'50%': { opacity: '0.7' },
+					'100%': { opacity: '0.4' }
+				},
+				'pulse-gradient': {
+					'0%': { backgroundPosition: '0% 50%' },
+					'50%': { backgroundPosition: '100% 50%' },
+					'100%': { backgroundPosition: '0% 50%' }
+				},
+				'gradientMove': {
+					'0%': { backgroundPosition: '0% 50%' },
+					'50%': { backgroundPosition: '100% 50%' },
+					'100%': { backgroundPosition: '0% 50%' }
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.5s ease-out',
+				'fade-in-delay-1': 'fade-in 0.5s ease-out 0.2s forwards',
+				'fade-in-delay-2': 'fade-in 0.5s ease-out 0.4s forwards',
 				'fade-out': 'fade-out 0.5s ease-out',
 				'slide-in-right': 'slide-in-right 0.5s ease-out',
 				'slide-in-bottom': 'slide-in-bottom 0.5s ease-out',
 				'scale-up': 'scale-up 0.5s ease-out',
 				'subtle-float': 'subtle-float 20s ease-in-out infinite',
 				'glow-pulse': 'glow-pulse 3s ease-in-out infinite',
+				'pulse-slow': 'pulse-slow 4s ease-in-out infinite',
+				'pulse-gradient': 'gradientMove 8s ease-in-out infinite',
 			},
 			boxShadow: {
 				'service': '0 10px 25px -5px rgba(30, 174, 219, 0.1), 0 8px 10px -6px rgba(30, 174, 219, 0.1)',
 				'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.12)',
 				'neon': '0 0 5px rgba(51, 195, 240, 0.5), 0 0 20px rgba(51, 195, 240, 0.3)',
 				'card-hover': '0 10px 40px -10px rgba(30, 174, 219, 0.3)',
+				'inner-light': 'inset 0 0 15px rgba(255, 255, 255, 0.07)',
 			},
 			backdropBlur: {
 				xs: '2px',

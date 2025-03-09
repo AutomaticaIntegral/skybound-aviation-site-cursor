@@ -52,19 +52,19 @@
   }
 
   h1 {
-    @apply text-4xl sm:text-5xl md:text-6xl leading-tight;
+    @apply text-4xl sm:text-5xl md:text-6xl leading-[1.1];
   }
 
   h2 {
-    @apply text-3xl sm:text-4xl md:text-5xl;
+    @apply text-3xl sm:text-4xl md:text-5xl leading-[1.2];
   }
 
   h3 {
-    @apply text-2xl sm:text-3xl;
+    @apply text-2xl sm:text-3xl leading-[1.3];
   }
 
   h4 {
-    @apply text-xl sm:text-2xl;
+    @apply text-xl sm:text-2xl leading-[1.3];
   }
 
   p {
@@ -78,7 +78,7 @@
   }
   
   .section-title {
-    @apply text-3xl md:text-4xl lg:text-5xl font-bold mb-6 md:mb-8 text-center;
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold mb-6 md:mb-8 text-center tracking-wide;
   }
   
   .section-subtitle {
@@ -94,11 +94,11 @@
   }
   
   .btn-primary {
-    @apply bg-skyblue hover:bg-skyblue-dark text-white px-6 py-4 rounded-md font-medium transition-all duration-300 hover:shadow-md transform hover:-translate-y-1;
+    @apply bg-skyblue hover:bg-skyblue-dark text-white px-6 py-4 rounded-md font-medium transition-all duration-300 hover:shadow-md transform hover:-translate-y-1 hover:scale-105;
   }
   
   .btn-outline {
-    @apply border-2 border-skyblue text-skyblue px-6 py-4 rounded-md font-medium hover:bg-skyblue hover:text-white transition-all duration-300 hover:shadow-md transform hover:-translate-y-1;
+    @apply border-2 border-skyblue text-skyblue px-6 py-4 rounded-md font-medium hover:bg-skyblue hover:text-white transition-all duration-300 hover:shadow-md transform hover:-translate-y-1 hover:scale-105;
   }
 
   /* Enhanced animations */
@@ -116,7 +116,7 @@
   
   /* Glass effect */
   .glass-card {
-    @apply bg-white/10 backdrop-blur-md border border-white/20 shadow-glass;
+    @apply bg-white/10 backdrop-blur-2xl border border-white/20 shadow-glass shadow-inner-light;
   }
   
   /* Service card enhancements */
@@ -125,6 +125,6 @@
   }
   
   .service-icon-container {
-    @apply w-14 h-14 rounded-md bg-gradient-to-br from-skyblue/90 to-skyblue-light/80 flex items-center justify-center mb-4 text-white shadow-md transition-all duration-300 group-hover:scale-110;
+    @apply w-14 h-14 rounded-md bg-gradient-to-br from-skyblue/90 to-skyblue-light/80 flex items-center justify-center mb-4 text-white shadow-md transition-all duration-300;
   }
 }
