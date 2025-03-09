@@ -16,7 +16,7 @@ const LanguageSwitcher = () => {
   const languageOptions = [
     { code: 'es', label: 'Español', flag: 'https://flagcdn.com/es.svg' },
     { code: 'en', label: 'English', flag: 'https://flagcdn.com/gb.svg' },
-    { code: 'ca', label: 'Català', flag: 'https://flagcdn.com/es-ct.svg' }
+    { code: 'ca', label: 'Català', flag: 'https://flagcdn.com/64x48/catalonia.png' }
   ];
 
   const currentLanguage = languageOptions.find(option => option.code === language);
