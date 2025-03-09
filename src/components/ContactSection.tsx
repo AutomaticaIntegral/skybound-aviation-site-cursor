@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -6,6 +5,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Phone, Mail, MapPin, Send } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { toast } from '@/components/ui/use-toast';
+import BarcelonaMap from './BarcelonaMap';
 
 const ContactSection = () => {
   const { t } = useLanguage();
@@ -67,9 +67,9 @@ const ContactSection = () => {
             </div>
           </div>
           
-          {/* Map Placeholder - In a real implementation, this would be a real map */}
-          <div className="mt-8 rounded-lg overflow-hidden h-[200px] bg-gray-200 flex items-center justify-center">
-            <p className="text-charcoal-light">Interactive Map Would Be Here</p>
+          {/* Integración del mapa de Barcelona */}
+          <div className="mt-8">
+            <BarcelonaMap />
           </div>
         </div>
         
