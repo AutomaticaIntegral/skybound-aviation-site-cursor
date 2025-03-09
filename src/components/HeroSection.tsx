@@ -21,13 +21,13 @@ const HeroSection = () => {
       {/* Hero Content */}
       <div className="container mx-auto px-4 relative z-20 py-40 md:py-48 lg:py-56">
         <div className="max-w-3xl">
-          <h1 className="text-white mb-4 animate-fade-in">
+          <h1 className="text-white mb-4 opacity-0 animate-[fade-in_0.6s_ease-out_forwards]">
             Pioneering the Future of Aviation
           </h1>
-          <p className="text-white/90 text-xl md:text-2xl mb-10 animate-fade-in-delay-1">
+          <p className="text-white/90 text-xl md:text-2xl mb-10 opacity-0 animate-[fade-in_0.6s_ease-out_0.2s_forwards]">
             Delivering innovative aerospace solutions with precision, reliability, and cutting-edge technology.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-delay-2">
+          <div className="flex flex-col sm:flex-row gap-4 opacity-0 animate-[fade-in_0.6s_ease-out_0.4s_forwards]">
             <Button className="bg-skyblue hover:bg-skyblue-dark text-white px-8 py-7 text-lg rounded-md shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
               Explore Our Services
               <ArrowRight className="ml-2 h-5 w-5" />
