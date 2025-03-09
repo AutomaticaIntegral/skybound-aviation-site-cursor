@@ -2,7 +2,13 @@
 import React from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Globe } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { 
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '@/components/ui/select';
 
 const LanguageSwitcher = () => {
   const { language, setLanguage } = useLanguage();
@@ -16,19 +22,18 @@ const LanguageSwitcher = () => {
   return (
     <div className="flex items-center gap-2">
       <Globe className="h-4 w-4" />
-      <div className="flex space-x-2">
-        {languageOptions.map((option) => (
-          <Button
-            key={option.code}
-            variant={language === option.code ? 'default' : 'ghost'}
-            size="sm"
-            className={`px-2 py-1 text-xs ${language === option.code ? 'bg-skyblue hover:bg-skyblue-dark' : ''}`}
-            onClick={() => setLanguage(option.code as 'es' | 'en' | 'ca')}
-          >
-            {option.label}
-          </Button>
-        ))}
-      </div>
+      <Select value={language} onValueChange={(value) => setLanguage(value as 'es' | 'en' | 'ca')}>
+        <SelectTrigger className="w-[130px] h-8 text-sm">
+          <SelectValue placeholder="Idioma" />
+        </SelectTrigger>
+        <SelectContent>
+          {languageOptions.map((option) => (
+            <SelectItem key={option.code} value={option.code}>
+              {option.label}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
     </div>
   );
 };
