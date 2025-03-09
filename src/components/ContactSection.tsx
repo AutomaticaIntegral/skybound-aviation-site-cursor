@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -42,7 +43,7 @@ const ContactSection = () => {
               </div>
               <div>
                 <p className="font-medium">{t('contact.phone')}</p>
-                <p className="text-charcoal-light">+1 (555) 123-4567</p>
+                <p className="text-charcoal-light">+34 932 983 700</p>
               </div>
             </div>
             
@@ -62,12 +63,12 @@ const ContactSection = () => {
               </div>
               <div>
                 <p className="font-medium">{t('contact.address')}</p>
-                <p className="text-charcoal-light">123 Aviation Blvd, Seattle, WA 98101, USA</p>
+                <p className="text-charcoal-light">Aeropuerto de Barcelona-El Prat, 08820 El Prat de Llobregat, Barcelona</p>
               </div>
             </div>
           </div>
           
-          {/* Integración del mapa de Barcelona */}
+          {/* Mapa del Aeropuerto de Barcelona */}
           <div className="mt-8">
             <BarcelonaMap />
           </div>
