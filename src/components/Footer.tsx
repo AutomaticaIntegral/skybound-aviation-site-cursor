@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Facebook, Twitter, Linkedin, Instagram, Phone, Mail, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -9,17 +8,6 @@ const Footer = () => {
   
   return (
     <footer className="bg-charcoal-dark text-white">
-      {/* EU Funding Banner */}
-      <div className="w-full bg-white py-4">
-        <div className="flex justify-center">
-          <img 
-            src="/lovable-uploads/f6b1cb2b-4801-45ba-a80e-e892b498fa6f.png" 
-            alt="Programa Kit Digital - Cofinanciado por los fondos Next Generation EU" 
-            className="w-auto max-w-[800px] px-4"
-          />
-        </div>
-      </div>
-      
       <div className="container mx-auto px-4 py-14">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 border-b border-gray-700/50 pb-12">
           <div className="col-span-1 md:col-span-5">
@@ -112,6 +100,16 @@ const Footer = () => {
             <a href="#" className="hover:text-skyblue transition-colors">{t('footer.privacy')}</a>
             <a href="#" className="hover:text-skyblue transition-colors">{t('footer.terms')}</a>
           </div>
+        </div>
+      </div>
+      
+      <div className="w-full bg-white py-4 mt-8">
+        <div className="flex justify-center">
+          <img 
+            src="/lovable-uploads/f6b1cb2b-4801-45ba-a80e-e892b498fa6f.png" 
+            alt="Programa Kit Digital - Cofinanciado por los fondos Next Generation EU" 
+            className="w-auto max-w-[800px] px-4"
+          />
         </div>
       </div>
     </footer>

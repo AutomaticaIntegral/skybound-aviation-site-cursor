@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -30,13 +29,9 @@ const ContactSection = () => {
       </p>
       
       <div className="grid md:grid-cols-2 gap-12 mt-12">
-        <div>
-          <h3 className="text-2xl font-bold mb-6">{t('contact.getInTouch')}</h3>
-          <p className="mb-6">
-            {t('contact.getInTouchText')}
-          </p>
-          
-          <div className="space-y-4 mt-8">
+        {/* Columna izquierda - Información de contacto y mapa */}
+        <div className="flex flex-col justify-between">
+          <div className="space-y-4 mb-8">
             <div className="flex items-center">
               <div className="w-10 h-10 rounded-full bg-skyblue/10 flex items-center justify-center mr-4">
                 <Phone className="h-5 w-5 text-skyblue" />
@@ -69,12 +64,19 @@ const ContactSection = () => {
           </div>
           
           {/* Mapa del Aeropuerto de Barcelona */}
-          <div className="mt-8">
+          <div className="mt-auto">
             <BarcelonaMap />
           </div>
         </div>
         
+        {/* Columna derecha - Título, descripción y formulario */}
         <div>
+          {/* Movemos el título y la descripción aquí */}
+          <h3 className="text-2xl font-bold mb-4">{t('contact.getInTouch')}</h3>
+          <p className="mb-6">
+            {t('contact.getInTouchText')}
+          </p>
+          
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-charcoal mb-1">
