@@ -1,11 +1,11 @@
 import React from 'react';
-import Navbar from '@/components/Navbar';
-import HeroSection from '@/components/HeroSection';
+import Navbar from '@/components/organisms/Navbar';
+import HeroSection from '@/components/organisms/HeroSection';
 import AboutSection from '@/components/organisms/AboutSection';
 import ServicesSection from '@/components/organisms/ServicesSection';
 import StatsSection from '@/components/organisms/StatsSection';
 import ContactSection from '@/components/organisms/ContactSection';
-import Footer from '@/components/Footer';
+import Footer from '@/components/organisms/Footer';
 import { Helmet } from 'react-helmet';
 import { useLanguage } from '@/contexts/LanguageContext';
 
