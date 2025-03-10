@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -9,6 +8,31 @@ import { useLanguage } from '@/contexts/LanguageContext';
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { t } = useLanguage();
+
+  // Cerrar el menú móvil cuando se cambia el tamaño de la ventana a desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768 && isMenuOpen) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [isMenuOpen]);
+
+  // Evitar el desplazamiento cuando el menú móvil está abierto
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isMenuOpen]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -50,7 +74,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <div className="md:hidden">
             <button 
-              className="text-charcoal p-2"
+              className="text-charcoal p-2 relative z-50"
               onClick={toggleMenu}
               aria-label="Toggle menu"
             >
@@ -61,52 +85,55 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Navigation */}
-      {isMenuOpen && (
-        <div className="md:hidden bg-white border-t animate-fade-in">
-          <div className="container mx-auto px-4 py-4">
-            <nav className="flex flex-col space-y-4">
-              <a 
-                href="#home" 
-                className="text-charcoal hover:text-skyblue font-medium py-2 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {t('navbar.home')}
-              </a>
-              <a 
-                href="#about" 
-                className="text-charcoal hover:text-skyblue font-medium py-2 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {t('navbar.about')}
-              </a>
-              <a 
-                href="#services" 
-                className="text-charcoal hover:text-skyblue font-medium py-2 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {t('navbar.services')}
-              </a>
-              <a 
-                href="#contact" 
-                className="text-charcoal hover:text-skyblue font-medium py-2 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {t('navbar.contact')}
-              </a>
-              <div className="py-2">
-                <LanguageSwitcher />
-              </div>
-              <Button 
-                variant="default" 
-                className="bg-skyblue hover:bg-skyblue-dark w-full"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {t('navbar.requestInfo')}
-              </Button>
-            </nav>
-          </div>
+      <div 
+        className={`md:hidden fixed inset-0 bg-white z-40 transition-transform duration-300 ease-in-out ${
+          isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+        style={{ top: '80px', height: 'calc(100vh - 80px)' }}
+      >
+        <div className="container mx-auto px-4 py-6 h-full overflow-y-auto">
+          <nav className="flex flex-col space-y-6">
+            <a 
+              href="#home" 
+              className="text-charcoal hover:text-skyblue font-medium py-2 text-lg transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {t('navbar.home')}
+            </a>
+            <a 
+              href="#about" 
+              className="text-charcoal hover:text-skyblue font-medium py-2 text-lg transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {t('navbar.about')}
+            </a>
+            <a 
+              href="#services" 
+              className="text-charcoal hover:text-skyblue font-medium py-2 text-lg transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {t('navbar.services')}
+            </a>
+            <a 
+              href="#contact" 
+              className="text-charcoal hover:text-skyblue font-medium py-2 text-lg transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {t('navbar.contact')}
+            </a>
+            <div className="py-4">
+              <LanguageSwitcher />
+            </div>
+            <Button 
+              variant="default" 
+              className="bg-skyblue hover:bg-skyblue-dark w-full py-6 text-lg"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {t('navbar.requestInfo')}
+            </Button>
+          </nav>
         </div>
-      )}
+      </div>
     </header>
   );
 };
